@@ -1,17 +1,16 @@
 {
-  "name": "Zainab Notes",
-  "short_name": "Zainab",
-  "description": "تطبيق مذكرة احترافية",
-  "start_url": "/ZainabNotes1/",
-  "scope": "/ZainabNotes1/",
+  "name": "زينب مسلم",
+  "short_name": "زينب",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "https://raw.githubusercontent.com/alilaftah/ZainabNotes1/main/icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
