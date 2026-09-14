@@ -1,0 +1,6 @@
+{
+  "name": "زينب مسلم - مذكرة احترافية",
+  "description": "تطبيق مذكرة احترافية باسم زينب مسلم لأجهزة الأندرويد مبني بـ Jetpack Compose و Kotlin مع دعم كامل للغة العربية (RTL) و Material 3 و Room Database",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
