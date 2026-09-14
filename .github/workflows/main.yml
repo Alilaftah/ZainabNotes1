@@ -18,24 +18,17 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Web Project
-      run: npm run build --if-present
-
-    - name: Create Web Output Directory if Missing
+    - name: Prepare Web Directory
       run: |
-        if [ ! -d "dist" ] && [ ! -d "build" ]; then
-          mkdir dist
-          cp index.html dist/ 2>/dev/null || true
-          cp -r src dist/ 2>/dev/null || true
-        fi
+        mkdir -p www
+        cp index.html www/ 2>/dev/null || true
+        cp -r src www/ 2>/dev/null || true
+        cp -r public/* www/ 2>/dev/null || true
 
     - name: Setup Capacitor and Android Platform
       run: |
         npm install @capacitor/core @capacitor/cli @capacitor/android
-        npx cap init ZainabNotes com.zainab.notes --web-dir $(if [ -d "dist" ]; then echo "dist"; else echo "build"; fi)
+        npx cap init ZainabNotes com.zainab.notes --web-dir www
         npx cap add android
         npx cap sync android
 
