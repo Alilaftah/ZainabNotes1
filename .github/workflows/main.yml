@@ -24,16 +24,23 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Prepare Web Directory & Setup Capacitor
+      run: |
+        mkdir -p www
+        cp index.html www/ 2>/dev/null || true
+        cp -r src www/ 2>/dev/null || true
+        cp -r public/* www/ 2>/dev/null || true
+        
+        npm install @capacitor/core @capacitor/cli @capacitor/android
+        npx cap init ZainabNotes com.zainab.notes --web-dir www
+        npx cap add android
+        npx cap sync android
+
     - name: Build Android APK
       run: |
-        if [ -d "android" ]; then
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
-        else
-          echo "Android directory not found!"
-          exit 1
-        fi
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
