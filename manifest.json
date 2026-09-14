@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "description": "تطبيق مذكرة احترافية باسم زينب مسلم لأجهزة الأندرويد مبني بـ Jetpack Compose و Kotlin مع دعم كامل للغة العربية (RTL) و Material 3 و Room Database",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Zainab",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Notes",
+  "start_url": "/",
+  "theme_color": "#ffffff"
+}
