@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Native Android APK
 
 on:
   push:
@@ -10,27 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout project
       uses: actions/checkout@v4
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-
-    - name: Prepare Web Directory
-      run: |
-        mkdir -p www
-        cp index.html www/ 2>/dev/null || true
-        cp -r src www/ 2>/dev/null || true
-        cp -r public/* www/ 2>/dev/null || true
-
-    - name: Setup Capacitor and Android Platform
-      run: |
-        npm install @capacitor/core @capacitor/cli @capacitor/android
-        npx cap init ZainabNotes com.zainab.notes --web-dir www
-        npx cap add android
-        npx cap sync android
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -38,14 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build Debug APK
-      run: |
-        cd android
-        chmod +x gradlew
-        ./gradlew assembleDebug
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
-    - name: Upload APK
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ZainabNotes-APK
-        path: android/app/build/outputs/apk/debug/app-debug.apk
+        name: ZainabNotes-Native-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
